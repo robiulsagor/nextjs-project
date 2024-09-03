@@ -1,11 +1,12 @@
 import Header from "@/components/Header";
+import Landing from "@/components/Landing";
 import Image from "next/image";
 
 export default function Home() {
   return (
     <div>
       <Header />
-      <div className=" h-[200vh]">hello</div>
+      <Landing />
     </div>
   );
 }
