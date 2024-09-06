@@ -1,12 +1,23 @@
+"use client";
+
 import Link from "next/link";
-import { FaArrowRight, FaPlayCircle } from "react-icons/fa";
+import {
+  FaArrowRight,
+  FaPlayCircle,
+  FaTimes,
+  FaTimesCircle,
+} from "react-icons/fa";
 import man from "@/public/assets/images/men.jpg";
 import Image from "next/image";
+import { useState } from "react";
 
 const Landing = () => {
+  const [showVideo, setShowVideo] = useState(true);
+
   return (
-    <div className="h-[500px]  w-full flex bg-white">
-      <div className="flex-1 flex flex-col items-center justify-center  gap-5">
+    <div className="h-[500px]  w-full flex bg-white relative">
+      {/* left side */}
+      <div className="flex-1 flex flex-col items-center justify-center  gap-5  ">
         <span className="bg-blue-400 bg-opacity-20 text-blue-700 px-2 py-1 rounded-lg w-max uppercase font-semibold">
           we are expert in this field
         </span>
@@ -33,7 +44,10 @@ const Landing = () => {
           </div>
 
           <div>
-            <span className="capitalize underline hover:no-underline cursor-pointer font-semibold text-gray-800">
+            <span
+              className="capitalize underline hover:no-underline cursor-pointer font-semibold text-gray-800"
+              onClick={() => setShowVideo(!showVideo)}
+            >
               Watch the video
             </span>
           </div>
@@ -50,6 +64,31 @@ const Landing = () => {
           alt="man"
         />
       </div>
+
+      {showVideo && (
+        <div
+          className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50 flex items-center justify-center"
+          onClick={() => setShowVideo(!showVideo)}
+        >
+          <div
+            className="absolute top-[50%] left-[50%] -translate-x-[50%]  -translate-y-[50%] h-[380px] w-[450px] p-2 bg-[#f1f1f1] rounded-md border flex items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <FaTimes
+              size={22}
+              className="absolute right-1 top-1 cursor-pointer"
+              onClick={() => setShowVideo(!showVideo)}
+            />
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/FVHspnpHPmM?si=tJDrHe1sn4IfhWye"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            ></iframe>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
